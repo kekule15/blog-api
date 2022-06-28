@@ -1,0 +1,11 @@
+router.patch("/updatePost/:id", async(req, res) => {
+    const  {content}= req.body;
+    const makePost = await User.updateOne({_id: req.params.id}, {"$set": { content: content}});
+    res.json({makePost})
+})
+
+router.delete("/deletePost/:id", async(req, res)=> {
+    await User.findByIdAndDelete({_id:req.params.id});
+    res.json({ message: "Account daleted!!"})
+
+})
